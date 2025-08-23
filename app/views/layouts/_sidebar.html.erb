@@ -1,10 +1,6 @@
 <aside class="w-40 bg-base-200 pt-2 pb-4 px-4 flex flex-col gap-2">
-  <ul class="menu menu-vertical rounded-box mb-4">
-    <li><a href="/" class="">Home</a></li>
-    <li><a href="/songs" class="">Songs</a></li>
-  </ul>
   <div class="flex flex-col gap-2">
-    <span class="font-bold text-xs text-gray-500 mb-1">ジャンルで探す</span>
+    <span class="font-bold text-xs text-gray-500 mb-1">Select Genre</span>
     <% GenreHelper.get_genre_list.each do |key, label| %>
       <% active = params[:genre] == key %>
       <a href="/songs?genre=<%= key %>"
