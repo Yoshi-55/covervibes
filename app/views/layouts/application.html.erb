@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="black">
   <head>
     <title><%= content_for(:title) || "CoverVibes" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -7,7 +7,10 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= yield :head %>
+
+  <%= yield :head %>
+  <!-- Alpine.js CDN -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" href="/icon.png" type="image/png">
