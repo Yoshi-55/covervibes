@@ -2,7 +2,6 @@
 class SongsController < ApplicationController
   def index
     service = SpotifySearchService.new
-    tracks = service.random_search(1)
-    @random_track = tracks.first
+  @tracks = service.random_search(32)
   end
 end
