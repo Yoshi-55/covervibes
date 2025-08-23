@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="cyberpunk">
   <head>
     <title><%= content_for(:title) || "CoverVibes" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -18,6 +18,12 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'layouts/header' %>
+    <div class="flex min-h-screen">
+      <%= render 'layouts/sidebar' %>
+  <main class="flex-1 pt-4 pr-6 pb-6 pl-6">
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
