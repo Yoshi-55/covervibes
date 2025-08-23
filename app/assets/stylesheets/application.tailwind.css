@@ -1,3 +1,8 @@
+/* blackテーマ時に画像・iframeをモノクロ化 */
+[data-theme="black"] img,
+[data-theme="black"] iframe {
+  filter: grayscale(1) !important;
+}
 @import "tailwindcss";
 @tailwind utilities;
 @plugin "daisyui" {

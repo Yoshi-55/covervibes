@@ -8,7 +8,7 @@
                                         class="object-cover rounded-box cursor-pointer mb-0 w-full max-w-xs aspect-square"
                                         style="max-width:400px;"
                                         @click="open = true"
-                                        :class="document.documentElement.getAttribute('data-theme') === 'black' ? 'grayscale' : ''"
+                                        :class="(document.documentElement.getAttribute('data-theme') === 'black') ? 'grayscale' : ''"
                                     />
                         <!-- Modal -->
                         <dialog :open="open" class="modal" @close="iframeKey++">
@@ -20,7 +20,7 @@
                                 <img src="<%= track.album.images.first['url'] %>" alt="ジャケット画像"
                                     class="object-contain mx-auto"
                                     style="width:400px; height:400px;"
-                                    :class="document.documentElement.getAttribute('data-theme') === 'black' ? 'grayscale' : ''"
+                                    :class="(document.documentElement.getAttribute('data-theme') === 'black') ? 'grayscale' : ''"
                                 />
                                 <div class="text-center mt-4 space-y-1">
                                     <div class="text-lg font-bold text-primary">
@@ -38,7 +38,7 @@
                                 <% if track.external_urls['spotify'] %>
                                     <div class="mt-4 flex justify-center">
                                         <template x-if="open">
-                                            <iframe :key="iframeKey" src="https://open.spotify.com/embed/track/<%= track.id %>" width="350" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media" class="rounded-2xl" :class="document.documentElement.getAttribute('data-theme') === 'black' ? 'grayscale' : ''"></iframe>
+                                            <iframe :key="iframeKey" src="https://open.spotify.com/embed/track/<%= track.id %>" width="350" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media" class="rounded-2xl" :class="(document.documentElement.getAttribute('data-theme') === 'black') ? 'grayscale' : ''"></iframe>
                                         </template>
                                     </div>
                                 <% end %>
