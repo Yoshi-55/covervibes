@@ -1,0 +1,15 @@
+<div x-data="{ theme: localStorage.getItem('theme') || 'light' }" class="dropdown dropdown-end">
+  <label tabindex="0" class="btn btn-sm btn-outline m-1">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 2.03a1 1 0 011.42 1.42l-.7.7a1 1 0 11-1.42-1.42l.7-.7zM18 9a1 1 0 100 2h-1a1 1 0 100-2h1zM4.22 4.03a1 1 0 00-1.42 1.42l.7.7a1 1 0 101.42-1.42l-.7-.7zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm7-6a7 7 0 11-14 0 7 7 0 0114 0zM3 9a1 1 0 100 2H2a1 1 0 100-2h1zm1.22 8.03a1 1 0 001.42 1.42l.7-.7a1 1 0 10-1.42-1.42l-.7.7zm11.56 0a1 1 0 01-1.42 1.42l-.7-.7a1 1 0 111.42-1.42l.7.7z"/></svg>
+    <span x-text="theme.charAt(0).toUpperCase() + theme.slice(1)"></span>
+  </label>
+  <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-36 mt-2">
+    <template x-for="t in ['light','dark','black','synthwave','retro','dracula','night','winter','luxury','coffee','forest','aqua','pastel','cyberpunk','valentine','cmyk','autumn','business','acid','lemonade']" :key="t">
+      <li>
+        <button class="w-full text-left" :class="theme === t ? 'btn-primary btn-sm' : ''" @click="theme = t; document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t)">
+          <span x-text="t.charAt(0).toUpperCase() + t.slice(1)"></span>
+        </button>
+      </li>
+    </template>
+  </ul>
+</div>
