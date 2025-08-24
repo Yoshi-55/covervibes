@@ -1,24 +1,37 @@
-# README
+# CoverVibes
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## ジャケットから新しい音楽との出会いを
+CDショップでの「ジャケ買い」や視聴の体験をウェブで再現。
 
-Things you may want to cover:
+豊富なカラーテーマを用意、お好きなテーマで新しい音楽体験を。
 
-* Ruby version
+## ターゲット
+- いつも同じジャンルやアーティストばかり聴いてしまう方
+- 新しい音楽を探したいけれど、何を聴くか迷っている方
+- ジャケットデザインから音楽を選ぶ体験を楽しみたい方
 
-* System dependencies
+## 概要
+- Spotify APIを利用し、ジャンルやランダムで楽曲を取得
+- ジャケット画像をクリックすると詳細・Spotify埋め込みプレイヤーを表示
+- データベースは未使用（API経由のみ）
 
-* Configuration
+## 主な機能
+- ジャケットランダム表示
+- ジャンル指定・ランダム検索
+- ジャケットクリックで詳細モーダル表示
+- Spotify埋め込みプレイヤーで試聴
+- Spotifyへのリンク
 
-* Database creation
+## 使い方
+1. トップページでジャンルを選択、またはランダムで楽曲を表示
+2. 気になるジャケットをクリック
+3. 詳細情報・Spotifyプレイヤーで試聴
 
-* Database initialization
+## 開発・デプロイ
+- Ruby on Rails 7
+- Node.js/Bun（フロントビルド用）
+- DB未使用
+- Render等のPaaSでデプロイ可能
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 注意事項
+- Spotify APIの利用規約・Brand Guidelinesに準拠
