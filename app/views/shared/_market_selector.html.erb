@@ -1,11 +1,9 @@
-<div x-data="{ open: false }" class="dropdown dropdown-end">
-  <button type="button" class="btn btn-sm btn-outline m-1 flex items-center gap-1" @click="open = !open">
+<div class="dropdown dropdown-end">
+  <label tabindex="0" class="btn btn-sm btn-outline m-1 flex items-center gap-1">
     <svg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'><path d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'/></svg>
-    <span>
-      <%= market_label(params[:market].presence || 'JP') %>
-    </span>
-  </button>
-  <ul x-show="open" @click.away="open = false" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-44 mt-2 z-50">
+    <span><%= market_label(params[:market].presence || 'JP') %></span>
+  </label>
+  <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-44 mt-2 z-50">
     <% spotify_markets.each do |code, name| %>
       <li>
         <form action="<%= songs_path %>" method="get" class="w-full">
