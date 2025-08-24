@@ -1,6 +1,9 @@
 <header class="w-full bg-base-100 shadow p-4 flex items-center justify-between">
   <div class="text-2xl font-bold">CoverVibes</div>
-  <div class="flex items-center gap-2">
-    <%= render 'layouts/theme_switcher' %>
+  <div class="flex items-center gap-4">
+    <div class="flex items-center gap-2">
+  <%= render 'shared/market_selector' %>
+      <%= render 'layouts/theme_switcher' %>
+    </div>
   </div>
 </header>
