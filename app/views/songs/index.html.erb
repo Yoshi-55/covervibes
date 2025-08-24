@@ -1,53 +1,56 @@
 
 <% if @tracks.present? %>
     <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <% @tracks.each do |track| %>
-                <div x-data="{ open: false, iframeKey: 0 }" class="flex flex-col items-center">
-                    <% if track.album && track.album.images.any? %>
-                                    <img src="<%= track.album.images.first['url'] %>" alt="ジャケット画像"
-                                        class="object-cover rounded-box cursor-pointer mb-0 w-full max-w-xs aspect-square"
-                                        style="max-width:400px;"
-                                        @click="open = true"
-                                        :class="(document.documentElement.getAttribute('data-theme') === 'black') ? 'grayscale' : ''"
-                                    />
-                        <!-- Modal -->
-                        <dialog :open="open" class="modal" @close="iframeKey++">
-                            <form method="dialog" class="modal-backdrop" @click="open = false; iframeKey++">
-                                <button>close</button>
-                            </form>
-                            <div class="modal-box relative">
-                                <button @click="open = false; iframeKey++" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                                <img src="<%= track.album.images.first['url'] %>" alt="ジャケット画像"
-                                    class="object-contain mx-auto"
-                                    style="width:400px; height:400px;"
-                                    :class="(document.documentElement.getAttribute('data-theme') === 'black') ? 'grayscale' : ''"
-                                />
-                                <div class="text-center mt-4 space-y-1">
-                                    <div class="text-lg font-bold text-primary">
-                                        <%= track.name %>
-                                    </div>
-                                    <div class="text-base text-secondary">
-                                        <%= track.artists.map(&:name).join(', ') %>
-                                    </div>
-                                    <div class="text-sm text-accent">
-                                        <a href="<%= track.album.external_urls['spotify'] %>" target="_blank" rel="noopener" class="link link-hover">
-                                            <%= track.album.name %>
-                                        </a>
-                                    </div>
+        <% @tracks.each do |track| %>
+            <div x-data="{ open: false, iframeKey: 0 }" class="flex flex-col items-center">
+                <% if track.album && track.album.images.any? %>
+                    <img src="<%= track.album.images.first['url'] %>" alt="ジャケット画像"
+                        class="object-cover rounded-box cursor-pointer mb-0 w-full max-w-xs aspect-square"
+                        style="max-width:400px;"
+                        @click="open = true"
+                        :class="(document.documentElement.getAttribute('data-theme') === 'black') ? 'grayscale' : ''"
+                    />
+                    <!-- Modal -->
+                    <dialog :open="open" class="modal" @close="iframeKey++">
+                        <form method="dialog" class="modal-backdrop" @click="open = false; iframeKey++">
+                            <button>close</button>
+                        </form>
+                        <div class="modal-box relative">
+                            <button @click="open = false; iframeKey++" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            <img src="<%= track.album.images.first['url'] %>" alt="ジャケット画像"
+                                class="object-contain mx-auto"
+                                style="width:400px; height:400px;"
+                                :class="(document.documentElement.getAttribute('data-theme') === 'black') ? 'grayscale' : ''"
+                            />
+                            <div class="text-center mt-4 space-y-1">
+                                <div class="text-lg font-bold text-primary">
+                                    <%= track.name %>
                                 </div>
-                                <% if track.external_urls['spotify'] %>
-                                    <div class="mt-4 flex justify-center">
-                                        <template x-if="open">
-                                            <iframe :key="iframeKey" src="https://open.spotify.com/embed/track/<%= track.id %>" width="350" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media" class="rounded-2xl" :class="(document.documentElement.getAttribute('data-theme') === 'black') ? 'grayscale' : ''"></iframe>
-                                        </template>
-                                    </div>
-                                <% end %>
+                                <div class="text-base text-secondary">
+                                    <%= track.artists.map(&:name).join(', ') %>
+                                </div>
+                                <div class="text-sm text-accent">
+                                    <a href="<%= track.album.external_urls['spotify'] %>" target="_blank" rel="noopener" class="link link-hover">
+                                        <%= track.album.name %>
+                                    </a>
+                                </div>
                             </div>
-                        </dialog>
-                    <% end %>
-                </div>
-            <% end %>
-        </div>
+                            <% if track.external_urls['spotify'] %>
+                                <div class="mt-4 flex justify-center">
+                                    <template x-if="open">
+                                        <iframe :key="iframeKey" src="https://open.spotify.com/embed/track/<%= track.id %>"
+                                            width="350" height="80" frameborder="0" allowtransparency="true"
+                                            allow="encrypted-media" class="rounded-2xl"
+                                            :class="(document.documentElement.getAttribute('data-theme') === 'black') ? 'grayscale' : ''"></iframe>
+                                    </template>
+                                </div>
+                            <% end %>
+                        </div>
+                    </dialog>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
 <% else %>
     <p>曲が取得できませんでした。</p>
 <% end %>
