@@ -4,8 +4,17 @@
     <title><%= content_for(:title) || "CoverVibes" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <!-- OGP & Twitter Card -->
+  <meta property="og:title" content="CoverVibes" />
+  <meta property="og:description" content="CDショップのような視聴体験、新しい音楽と出会おう。" />
+  <meta property="og:image" content="https://your-domain.example.com/covervibes.png" />
+  <meta property="og:url" content="https://your-domain.example.com/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
 
 
   <%= yield :head %>
