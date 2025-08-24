@@ -1,0 +1,9 @@
+<%# trackを受け取り、シェア文言とURLをここで組み立てる %>
+<% if defined?(track) && track.present? %>
+  <% share_text = "#{track.name} - #{track.artists.map(&:name).join(', ')} をSpotifyでチェック!! #Cover_Vibes" %>
+  <% share_url = track.external_urls['spotify'] || track.album.external_urls['spotify'] %>
+  <% x_share_url = "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode(share_text)}&url=#{ERB::Util.url_encode(share_url)}" %>
+  <a href="<%= x_share_url %>" target="_blank" rel="noopener" class="btn btn-outline btn-sm flex items-center gap-1">
+    Xでシェア
+  </a>
+<% end %>
