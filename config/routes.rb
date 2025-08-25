@@ -1,3 +1,4 @@
+get '/healthz', to: proc { [200, {}, ['ok']] }
 Rails.application.routes.draw do
   get "songs", to: "songs#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
