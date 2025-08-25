@@ -3,7 +3,7 @@
     <span class="font-bold text-xs text-gray-500 mb-1">Select Genre</span>
     <% GenreHelper.get_genre_list.each do |key, label| %>
       <% active = params[:genre] == key %>
-      <a href="/songs?genre=<%= key %>"
+      <a href="/songs?genre=<%= key %><%= params[:market].present? ? "&market=#{params[:market]}" : '' %>"
          class="btn btn-sm w-full <%= active ? 'btn-primary' : 'btn-outline' %>">
         <%= label %>
       </a>
