@@ -1,6 +1,6 @@
 <%# trackを受け取り、シェア文言とURLをここで組み立てる %>
 <% if defined?(track) && track.present? %>
-  <% share_text = "#{track.name}（#{track.artists.map(&:name).join(', ')}）を発見！\nあなたも #Cover_Vibes で新しい音楽と出会おう！" %>
+  <% share_text = "#{track.name}（#{track.artists.map(&:name).join(', ')}）\n #Cover_Vibes で新しい音楽と出会おう！" %>
   <% app_url = root_url %>
   <% if track.id.present? %>
     <% app_url = URI.parse(app_url) %>
