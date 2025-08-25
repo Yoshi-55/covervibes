@@ -2,21 +2,34 @@
 <% if @tracks.present? %>
     <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <% @tracks.each do |track| %>
-            <div x-data="{ open: false, iframeKey: 0 }" class="flex flex-col items-center">
+                        <div x-data="{
+                                open: false,
+                                iframeKey: 0,
+                                setTrackId(id) {
+                                    const url = new URL(window.location);
+                                    url.searchParams.set('trackid', id);
+                                    window.history.pushState({}, '', url);
+                                },
+                                clearTrackId() {
+                                    const url = new URL(window.location);
+                                    url.searchParams.delete('trackid');
+                                    window.history.pushState({}, '', url);
+                                }
+                            }" class="flex flex-col items-center">
                 <% if track.album && track.album.images.any? %>
                     <img src="<%= track.album.images.first['url'] %>" alt="ジャケット画像"
                         class="object-cover rounded-box cursor-pointer mb-0 w-full max-w-xs aspect-square"
                         style="max-width:400px;"
-                        @click="open = true"
+                        @click="open = true; setTrackId('<%= track.id %>')"
                         :class="(document.documentElement.getAttribute('data-theme') === 'black') ? 'grayscale' : ''"
                     />
                     <!-- Modal -->
-                    <dialog :open="open" class="modal" @close="iframeKey++">
-                        <form method="dialog" class="modal-backdrop" @click="open = false; iframeKey++">
+                    <dialog :open="open" class="modal" @close="iframeKey++; clearTrackId()">
+                        <form method="dialog" class="modal-backdrop" @click="open = false; iframeKey++; clearTrackId()">
                             <button>close</button>
                         </form>
                         <div class="modal-box relative">
-                            <button @click="open = false; iframeKey++" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            <button @click="open = false; iframeKey++; clearTrackId()" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             <img src="<%= track.album.images.first['url'] %>" alt="ジャケット画像"
                                 class="object-contain mx-auto"
                                 style="width:400px; height:400px;"
@@ -54,6 +67,16 @@
             </div>
         <% end %>
     </div>
+
 <% else %>
-    <p>曲が取得できませんでした。</p>
+        <p>曲が取得できませんでした。</p>
 <% end %>
+
+<div class="mt-20 flex justify-center">
+    <div class="card w-full max-w-md bg-base-200 shadow-xl">
+        <div class="card-body items-center text-center">
+            <h2 class="card-title text-primary">How to Use</h2>
+            <p class="text-base text-gray-500">←サイドバーからジャンルを選んで曲を探そう。<br>画像クリックで詳細、試聴ができます。</p>
+        </div>
+    </div>
+</div>

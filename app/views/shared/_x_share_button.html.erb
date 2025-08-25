@@ -2,6 +2,11 @@
 <% if defined?(track) && track.present? %>
   <% share_text = "#{track.name}（#{track.artists.map(&:name).join(', ')}）を発見！\nあなたも #Cover_Vibes で新しい音楽と出会おう！" %>
   <% app_url = root_url %>
+  <% if track.id.present? %>
+    <% app_url = URI.parse(app_url) %>
+    <% app_url.query = [app_url.query, "trackid=#{track.id}"].compact.join('&') %>
+    <% app_url = app_url.to_s %>
+  <% end %>
   <% x_share_url = "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode(share_text)}&url=#{ERB::Util.url_encode(app_url)}" %>
   <a href="<%= x_share_url %>" target="_blank" rel="noopener" class="btn btn-outline btn-sm flex items-center gap-1">
     Xでシェア
