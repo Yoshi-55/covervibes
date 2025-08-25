@@ -11,12 +11,12 @@ class SongsController < ApplicationController
     if params[:trackid].present?
       begin
         track = RSpotify::Track.find(params[:trackid])
-        @tracks = track ? [track] : []
+        @tracks = track ? [ track ] : []
         if track
           @track_meta = {
             title: track.name,
-            artist: track.artists.map(&:name).join(', '),
-            image: track.album&.images&.first&.dig('url'),
+            artist: track.artists.map(&:name).join(", "),
+            image: track.album&.images&.first&.dig("url"),
             url: request.original_url
           }
         end

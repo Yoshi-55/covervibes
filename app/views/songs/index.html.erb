@@ -28,11 +28,10 @@
                         <form method="dialog" class="modal-backdrop" @click="open = false; iframeKey++; clearTrackId()">
                             <button>close</button>
                         </form>
-                        <div class="modal-box relative">
+                        <div class="modal-box w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl p-4 relative">
                             <button @click="open = false; iframeKey++; clearTrackId()" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             <img src="<%= track.album.images.first['url'] %>" alt="ジャケット画像"
-                                class="object-contain mx-auto"
-                                style="width:400px; height:400px;"
+                                class="object-contain mx-auto w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-[400px] aspect-square"
                                 :class="(document.documentElement.getAttribute('data-theme') === 'black') ? 'grayscale' : ''"
                             />
                             <div class="text-center mt-4 space-y-1">
@@ -52,8 +51,9 @@
                                 <div class="mt-4 flex justify-center">
                                     <template x-if="open">
                                         <iframe :key="iframeKey" src="https://open.spotify.com/embed/track/<%= track.id %>"
-                                            width="350" height="80" frameborder="0" allowtransparency="true"
-                                            allow="encrypted-media" class="rounded-2xl"
+                                            class="rounded-2xl w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-[400px]"
+                                            style="height:80px;" frameborder="0" allowtransparency="true"
+                                            allow="encrypted-media"
                                             :class="(document.documentElement.getAttribute('data-theme') === 'black') ? 'grayscale' : ''"></iframe>
                                     </template>
                                 </div>
